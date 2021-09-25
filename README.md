@@ -1,0 +1,2 @@
+# ganamod
+Ganamod resources
