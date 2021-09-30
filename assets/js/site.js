@@ -97,17 +97,7 @@ jQuery(function($) {
 			scrollTop: $('.form-comment').offset().top - adminbarHeight - siteheaderHeight
 		}, 600);
 	});
-	if ( $('#gen-download').length > 0 ) {
-		var downloadTimer = setInterval(function(){
-			timeleft -= 1;
-			console.log(timeleft);
-			if ( timeleft <= 0 ) {
-				clearInterval(downloadTimer);
-				$('#gen-download').css('display', 'none');
-				$('#get-download').css('display', 'block');
-			}
-		}, 1000);
-	}
+
 });
 
 function convertToSlug(Text) {
