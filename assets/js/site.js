@@ -37,31 +37,7 @@ jQuery(function($) {
 		e.stopPropagation();
 	});
 
-	/**
-	 * Table of contents
-	 */
-	/*
-	if ( $('.table-of-contents').length > 0 ) {
-		$('.entry-content h2, .entry-content h3').each(function() {
-			$(this).attr('id', convertToSlug($(this).text()));
-			if ( $(this).is('h2') ) {
-				$('.table-of-contents .links').append('<a class="d-block mb-2" href="#' + convertToSlug($(this).text()) + '">' + $(this).text() + '</a>');
-			} else if ( $(this).is('h3') ) {
-				$('.table-of-contents .links').append('<a class="d-block ml-3 mb-2" href="#' + convertToSlug($(this).text()) + '">' + $(this).text() + '</a>');
-			}
-		});
-	}
-	*/
-
-	$('.table-of-contents a').on('click', function(e) {
-	    e.preventDefault();
-	    var hash = this.hash;
-	    location.hash = hash;
-	    $('html, body').animate({
-	    	scrollTop: $(hash).offset().top - adminbarHeight - siteheaderHeight
-	    }, 0);
-	});
-
+	
 	if ( location.hash ) {
 		var hash = location.hash;
 		if ( $('.table-of-contents a[href="' + hash + '"]').length > 0 ) {
@@ -77,51 +53,6 @@ jQuery(function($) {
 		}
 	}
 
-	/**
-	 * Schema faq
-	 */
-	$('.schema-faq-section').on('click', function() {
-		$('.schema-faq-section.active').find('.schema-faq-answer').slideUp(100);
-		if ( $(this).hasClass('active') ) {
-			$('.schema-faq-section.active').removeClass('active');
-			$(this).find('.schema-faq-answer').slideUp(100);
-		} else {
-			$('.schema-faq-section.active').removeClass('active');
-			$(this).addClass('active');
-			$(this).find('.schema-faq-answer').slideDown(100);
-		}
-	});
-
-	/**
-	 * Rating
-	 */
-	$('.rating').rateYo({
-		starWidth: '20px',
-		fullStar: true,
-		onSet: function (rating, rateYoInstance) {
-			var $this = $(this);
-			var post_id = $this.data('post_id');
-			$.ajax({
-				type: 'POST',
-				url: ajax.ajax_url,
-				data: {
-					'action'  : 'willgroup_rating',
-					'post_id' : post_id,
-					'rating'  : rating,
-				},
-				success: function( data, textStatus, jqXHR ) {
-					if ( data.status == true ) {
-						$this.rateYo('option', 'readOnly', true);
-					} else {
-						alert(data.message);
-					}
-				},
-				error: function( jqXHR, textStatus, errorThrown ) {
-					alert( jqXHR.responseText );
-				}
-			});
-	    }
-	});
 	
 	/**
 	 * Login
@@ -177,43 +108,6 @@ jQuery(function($) {
 			}
 		}, 1000);
 	}
-
-	/*
-	var total_time = timeleft;
-	if ( $('#download-loading').length > 0 ) {
-		var downloadTimer = setInterval(function(){
-			timeleft -= 1;
-			//var update_percent = Math.abs( ((total_time-timeleft)/total_time) * 100);
-
-			if ( timeleft <= 0 ) {
-				clearInterval(downloadTimer);
-				$('#download-loading').css('display', 'none');
-				$('#download').css('display', 'block');
-			}
-			else {
-		document.getElementById("download-loading").innerHTML =  "<p style=\"font-size:15px; font-weight:400; line-height: 22.5px; color:#6c757d;\" class=\"text-center text-muted mb-2\">Your link is almost ready, please wait a <strong style='font-size: 25px!important;'>" + Math.abs((timeleft))+"</strong> seconds...</p><div class=\"progress\"><div class=\"progress-bar progress-bar-striped progress-bar-animated bg-secondary\" role=\"progressbar\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " + Math.abs((timeleft))+"0%\"></div></div>";
-		//document.getElementById("download-loading").innerHTML =  "<p style=\"font-size:15px; font-weight:400; line-height: 22.5px; color:#6c757d;\" class=\"text-center text-muted mb-2\">Your link is almost ready, please wait a <strong style='font-size: 25px!important;'>" + Math.abs((timeleft))+"</strong> seconds...</p><div class=\"progress\"><div class=\"progress-bar progress-bar-striped progress-bar-animated bg-secondary\" role=\"progressbar\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " + Math.abs(update_percent)+"0%\"></div></div>";
-			}
-		}, 1000);
-	}
-	*/
-
-	/*
-	 
-	if ( $('#download-loading').length > 0 ) {
-		var timeleft = 4;
-		var downloadTimer = setInterval(function(){
-			timeleft -= 1;
-			if ( timeleft <= 0 ) {
-				clearInterval(downloadTimer);
-				$('#download-loading').css('display', 'none');
-				$('#download').css('display', 'block');
-			}
-		}, 1000);
-	}
-	
-	 
-*/
 });
 
 function convertToSlug(Text) {
