@@ -1471,7 +1471,7 @@ ol.toc-list {
         background: #F0F0F0
     }
     .mobile-containter .related-post-1 .app-get .get-button, .mobile-containter .related-post-2 .app-get .get-button {
-        background: #FFF
+        background: #FFF;color: var(--accent);
     }
     .mobile-containter .related-post-1 h2, .mobile-containter .comment-section h2 {
         border-top: none!important
