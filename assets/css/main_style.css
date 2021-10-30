@@ -1255,8 +1255,7 @@ table.table {
 }
 
 .dl-button {
-    border-radius: 20px;
-    padding: 8px 22px;
+    border-radius:4px;padding:6px;width:100%;text-align:center;background: #0287ff!important;
 }
 
 .dl-button>span {
